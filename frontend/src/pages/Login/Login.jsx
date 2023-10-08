@@ -4,30 +4,46 @@ import { useFormik } from "formik";
 import { FcGoogle } from "react-icons/fc";
 import { TextInput, PasswordInput } from "@Components/FormInput";
 import ForgotPassword from "@Pages/ForgotPassword";
+import { LoginUser } from "../../services/authService.js";
 import * as Yup from "yup";
 
 
-const Login = () => { 
+const Login = () => {
     const navigate = useNavigate();
     const [showForgotPassword, setShowForgotPassword] = useState(false);
     const onShowForgotPassword = () => setShowForgotPassword(!showForgotPassword);
 
     const formik = useFormik({
-        initialValues : {
-            email : "",
-            password : ""
+        initialValues: {
+            email: "",
+            password: ""
         },
-        onSubmit : (values) => {
-            navigate("/dashboard/home")
+        onSubmit: (values) => {
+            const UserLogin = async () => {
+                try {
+                    const response = await LoginUser(values);
+                    if(!response.data){
+                        sessionStorage.setItem("token", response.data);
+                        navigate("/dashboard/home")
+                    }
+
+
+                } catch (error) {
+                    console.log(error.response);
+                }
+            };
+            UserLogin();
+            
         },
-        validationSchema : Yup.object({
-            email :Yup.string().required("Email Address is required.")
+        validationSchema: Yup.object({
+            email: Yup.string().required("Email Address is required.")
                 .email("Invalid Email Address")
                 .min(4, "Email Address must be at least 4 characters.")
                 .max(150, "Email Address can be at most 150 characters."),
-            password : Yup.string().required("Password is required.")
+
+            password: Yup.string().required("Password is required.")
                 .min(8, "Password must be at least 8 characters.")
-                .max(150, "Password can be at most 150 characters."),
+                .max(150, "Password can be at most 150 characters.")
         })
     });
 
@@ -44,25 +60,25 @@ const Login = () => {
                     className="w-full flex flex-col gap-5">
                     <TextInput nameId="email"
                         name="Email"
-                        type="email"
+                        type="text"
                         placeholder="JohnDoe@example.com"
                         maxLength={150}
                         errors={formik.errors.email}
                         touched={formik.touched.email}
                         onChange={formik.handleChange}
-                        value={formik.values.email}/>
-
+                        value={formik.values.email} />
+                    
                     <div className="mb-2">
                         <PasswordInput nameId="password"
-                            name="Password" 
+                            name="Password"
                             type="password"
                             placeholder="Password"
                             maxLength={150}
                             errors={formik.errors.password}
                             touched={formik.touched.password}
                             onChange={formik.handleChange}
-                            value={formik.values.password}/>
-                
+                            value={formik.values.password} />
+
                         <div className="mt-2 text-end float-right">
                             <p className="font-poppins text-sm font-semibold text-secondary-light cursor-pointer active-secondary" onClick={onShowForgotPassword}>
                                 Forgot Password?
@@ -82,7 +98,7 @@ const Login = () => {
                     </p>
 
                     <button className="bg-gray-100 rounded-full h-14 text-poppin font-semibold flex items-center justify-center gap-2" onClick={(e) => e.preventDefault()}>
-                        <FcGoogle size={24}/>
+                        <FcGoogle size={24} />
                         Continue with Google
                     </button>
                 </form>
