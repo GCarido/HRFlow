@@ -1,5 +1,7 @@
 import Login from "@Pages/Login";
 import Register from "@Pages/Register";
+import ConfirmPassword from "@Pages/ConfirmPassword";
+import ResetPassword from "@Pages/ResetPassword";
 
 export const routes = [
     { 
@@ -22,6 +24,19 @@ export const routes = [
                 path: "/login",
                 element: <Login />
             }, 
+
+            {   
+                name: "ConfirmPassword",
+                path: "/confirm-password",
+                element: <ConfirmPassword />
+            }, 
+
+            {   
+                name: "ResetPassword",
+                path: "/reset-password",
+                element: <ResetPassword />
+            }, 
+
             {
                 name: "Register",
                 path: "/register",
