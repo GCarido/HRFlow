@@ -37,12 +37,22 @@ export const ForgotPassword = async (request) => {
 
 export const VerifyPassword = async (request) => {
     try {
-        const response = await axiosInstance.post("/forgot-password/verification");
+        const response = await axiosInstance.post("/forgot-password/verification", request);
         return response.data;
     } catch (error) {
         return error.response;
     }
 };
+
+export const ResetsPassword = async (request) => {
+    try {
+        const response = await axiosInstance.put("/forgot-password/reset-password", request);
+        return response.data;
+    } catch (error) {
+        return error.response;
+    }
+};
+
 
 export const SendEmailToAdmin = async (request) => {
     try {
