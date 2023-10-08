@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import ContactHand from "@Assets/svg/ContactHand.svg";
 import PurpleGradient from "@Assets/svg/Contact_purple.svg";
 import { useFormik } from "formik";
-import { SendEmailToAdmin } from "services/authService.js";
+import { SendEmailToAdmin } from "../../../services/authService.js";
 import * as Yup from "yup";
 
 const Contact = forwardRef((props, ref) => {
