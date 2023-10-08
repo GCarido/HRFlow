@@ -46,17 +46,17 @@ const Navbar = ( props ) => {
                                 <div className="hidden lg:flex items-center gap-8 2xl:gap-10 font-semibold text-lg 2xl:text-xl transition-all ease-in">
                                     <p
                                         onClick={() => menuItemClickHandler("homeRef")} 
-                                        className="hover:text-primary-dark"
+                                        className="hover:text-primary-dark hover:cursor-pointer"
                                     >
                                         Home
                                     </p>
-                                    <p onClick={() => menuItemClickHandler("servicesRef")} className="hover:text-primary-dark">
+                                    <p onClick={() => menuItemClickHandler("servicesRef")} className="hover:text-primary-dark hover:cursor-pointer">
                                         Services
                                     </p>
-                                    <p onClick={() => menuItemClickHandler("aboutRef")} className="hover:text-primary-dark">
+                                    <p onClick={() => menuItemClickHandler("aboutRef")} className="hover:text-primary-dark hover:cursor-pointer">
                                         About
                                     </p>
-                                    <p onClick={() => menuItemClickHandler("contactRef")} className="hover:text-primary-dark">
+                                    <p onClick={() => menuItemClickHandler("contactRef")} className="hover:text-primary-dark hover:cursor-pointer">
                                         Contact Us
                                     </p>
                                     <button onClick={onClickRoute}  className="bg-primary-light px-8 py-1.5 2xl:px-10 2xl:py-2 rounded-full text-white hover:bg-primary-dark">
