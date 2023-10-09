@@ -56,10 +56,10 @@ const ConfirmPassword = () => {
                   type="text"
                   placeholder="123456"
                   maxLength={6}
-                  errors={formik.errors.otp}
-                  touched={formik.touched.otp}
+                  errors={formik.errors.code}
+                  touched={formik.touched.code}
                   onChange={formik.handleChange}
-                  value={formik.values.otp} />
+                  value={formik.values.code} />
 
             </span>
 
